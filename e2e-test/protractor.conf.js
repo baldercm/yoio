@@ -1,23 +1,13 @@
 exports.config = {
   baseUrl: 'http://localhost:9001/',
 
-  framework: 'cucumber',
+  framework: 'jasmine',
   specs: [
-    'cucumber/*.feature'
+    'spec/**/*.js'
   ],
-  cucumberOpts: {
-    require: 'cucumber/stepDefinitions.js',
-    tags: '@dev',
-    format: 'summary'
+  jasmineNodeOpts: {
+    defaultTimeoutInterval: 30000
   },
-
-  // framework: 'jasmine',
-  // specs: [
-  //   'spec/**/*.js'
-  // ],
-  // jasmineNodeOpts: {
-  //   defaultTimeoutInterval: 30000
-  // },
 
   allScriptsTimeout: 11000,
 
