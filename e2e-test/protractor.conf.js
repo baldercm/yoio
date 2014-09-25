@@ -9,7 +9,7 @@ exports.config = {
     require: 'cucumber/stepDefinitions.js',
     tags: '@dev',
     format: 'summary'
-  }
+  },
 
   // framework: 'jasmine',
   // specs: [
@@ -23,5 +23,5 @@ exports.config = {
 
   capabilities: {
     'browserName': 'chrome'
-  },
+  }
 };
