@@ -1,0 +1,22 @@
+[
+  {
+    "id"       : "STUD_000001",
+    "firstName": "Juan",
+    "lastName" : "García García"
+  },
+  {
+    "id"       : "STUD_000004",
+    "firstName": "Ana",
+    "lastName" : "Zubizarreta Clemente"
+  },
+  {
+    "id"       : "STUD_000002",
+    "firstName": "Marisa",
+    "lastName" : "Alvarez García"
+  },
+  {
+    "id"       : "STUD_000003",
+    "firstName": "Antonio",
+    "lastName" : "Alvarez Pérez"
+  }
+]

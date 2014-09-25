@@ -1,0 +1,18 @@
+[
+  {
+    "id"   : "GRAD_000001",
+    "name" : "1º ESO A"
+  },
+  {
+    "id"   : "GRAD_000002",
+    "name" : "1º ESO B"
+  },
+  {
+    "id"   : "GRAD_000003",
+    "name" : "2º ESO A"
+  },
+  {
+    "id"   : "GRAD_000004",
+    "name" : "2º ESO B"
+  }
+]

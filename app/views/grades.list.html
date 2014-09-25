@@ -1,0 +1,24 @@
+<ion-view title="Grades">
+  <ion-nav-buttons side="right" ng-controller="MainCtrl">
+    <button class="button button-icon icon ion-more" ng-click="openPopover($event)"></button>
+  </ion-nav-buttons>
+
+  <script id="my-popover.html" type="text/ng-template">
+    <ion-popover-view>
+      <ion-content>
+        <a class="button button-block button-clear button-positive" href="#/preferences">
+          Preferences
+        </a>
+      </ion-content>
+    </ion-popover-view>
+  </script>
+
+  <ion-content>
+    <ion-list type="card">
+      <ion-item ng-repeat="grade in grades | orderBy : 'name'"
+                href="#/grades/{{grade.id}}">
+        <h2>{{ grade.name }}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

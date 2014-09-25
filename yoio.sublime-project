@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": ".",
+      "folder_exclude_patterns": [
+        "app/bower_components",
+        "coverage",
+        "node_modules",
+        "platforms",
+        "plugins",
+        "www",
+        ".tmp",
+        ".sass-cache"
+      ]
+		}
+	]
+}
