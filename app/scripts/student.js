@@ -20,7 +20,7 @@ angular.module('yoioStudent', [
 .controller('StudentDetailCtrl', ['$scope', '$stateParams', 'Student',
   function($scope, $stateParams, Student) {
     $scope.data = {
-      id: $stateParams.id,
+      id: $stateParams.id
     };
     $scope.student = Student.get();
   }]);

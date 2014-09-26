@@ -151,7 +151,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      coverage: 'coverage'
     },
 
     autoprefixer: {
@@ -267,7 +268,7 @@ module.exports = function (grunt) {
             '*.html',
             'views/**/*.html',
             'fonts/*',
-            'api/*',
+            'api/*'
           ]
         }, {
           expand: true,
@@ -325,52 +326,35 @@ module.exports = function (grunt) {
 
     karma: {
       options: {
-        basePath: '',
-        frameworks: ['jasmine'],
-        files: [
-          '<%= yeoman.app %>/bower_components/angular/angular.js',
-          '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
-          '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
-          '<%= yeoman.app %>/bower_components/angular-resource/angular-resource.js',
-          '<%= yeoman.app %>/bower_components/angular-sanitize/angular-sanitize.js',
-          '<%= yeoman.app %>/bower_components/angular-ui-router/release/angular-ui-router.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic.js',
-          '<%= yeoman.app %>/bower_components/ionic/release/js/ionic-angular.js',
-          '<%= yeoman.app %>/bower_components/collide/collide.js',
-          '<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js',
-          // 'test/mock/**/*.js',
-          'test/spec/**/*.js'
-        ],
-        autoWatch: false,
-        reporters: ['dots', 'coverage'],
-        port: 9009,
-        singleRun: false,
-        preprocessors: {
-          'app/scripts/**/*.js': ['coverage']
-        },
+        configFile: 'test/karma.conf.js'
+      },
+      dev: {
+        background: true,
+        browsers: ['PhantomJS'],
         coverageReporter: {
           reporters: [
-            { type: 'html', dir: 'coverage' },
             { type: 'text-summary' }
           ]
         }
       },
-      unit: {
+      singleRun: {
+        singleRun: true,
         browsers: ['PhantomJS'],
-        background: true
-      },
-      continuous: {
-        browsers: ['PhantomJS'],
-        singleRun: true
+        coverageReporter: {
+          reporters: [
+            { type: 'html', dir: 'coverage' },
+            { type: 'text' }
+          ]
+        }
       }
     },
 
     protractor: {
       e2etest: {
         options: {
-          configFile: 'e2e-test/protractor.conf.js'
+          configFile: 'test/protractor.conf.js'
         }
-      },
+      }
     },
 
     ngAnnotate: {
@@ -445,8 +429,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('watch:karma', function () {
     var karma = {
-      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', 'test/spec/**/*.js'],
-      tasks: ['newer:jshint:test', 'karma:unit:run']
+      files: ['<%= yeoman.app %>/<%= yeoman.scripts %>/**/*.js', 'test/unit/**/*.js'],
+      tasks: ['newer:jshint:test', 'karma:dev:run']
     };
     grunt.config.set('watch', karma);
     return grunt.task.run(['watch']);
@@ -464,13 +448,26 @@ module.exports = function (grunt) {
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
-      'karma:unit:start',
-      'watch:karma'
+      'watch'
     ]);
   });
 
+  grunt.registerTask('dev', [
+    'clean:server',
+    'ngconstant:development',
+    'wiredep',
+    'concurrent:server',
+    'autoprefixer',
+    'connect:livereload',
+    'karma:dev:start',
+    'watch:karma'
+  ]);
+
   grunt.registerTask('test', [
-    'karma:continuous'
+    'clean:server',
+    'concurrent:test',
+    'newer:jshint',
+    'karma:singleRun'
   ]);
 
   grunt.registerTask('build', [
@@ -480,7 +477,7 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
-    'karma:continuous',
+    'karma:singleRun',
     'autoprefixer',
     'concat',
     'ngAnnotate',
@@ -504,7 +501,11 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('coverage', [
-    'karma:continuous',
+    'clean:coverage',
+    'clean:server',
+    'concurrent:test',
+    'newer:jshint',
+    'karma:singleRun',
     'connect:coverage:keepalive'
   ]);
 
