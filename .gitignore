@@ -1,14 +1,13 @@
-node_modules
-www
-.tmp
-.sass-cache
-app/bower_components
+.tmp/
+.sass-cache/
+app/bower_components/
 app/scripts/config.js
-coverage
-platforms
-plugins
-*.swp
-*.swo
-*.log
-*.DS_Store
+coverage/
+node_modules/
+platforms/
+plugins/
+www/
+
+# IDEs
+.idea/
 *.sublime-workspace
