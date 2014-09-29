@@ -2,16 +2,13 @@
 
 describe('Student', function () {
 
-  beforeEach(function() {
-    this.addMatchers({
-      toEqualData: function(expected) {
-        return angular.equals(this.actual, expected);
-      }
-    });
-  });
-
   beforeEach(module('ionic'));
   beforeEach(module('yoioStudent'));
+  beforeEach(module('yoioJasmineExt'));
+
+  beforeEach(inject(function(CustomMatchers) {
+    this.addMatchers(CustomMatchers);
+  }));
 
   describe('ListCtrl', function () {
     var StudentListCtrl, scope, $httpBackend;
@@ -28,7 +25,7 @@ describe('Student', function () {
     }));
 
     it('should attach a list of students to the scope', function () {
-      expect(scope.students).toEqualData([]);
+      expect(scope.students).toDeepEqual([]);
       $httpBackend.flush();
 
       expect(scope.students.length).toBe(3);

@@ -36,7 +36,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'development',
-            apiEndpoint: 'http://dev.yoursite.com:10000/'
+            apiEndpoint: 'http://127.0.0.1:9000/'
           }
         }
       },
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'production',
-            apiEndpoint: 'http://api.yoursite.com/'
+            apiEndpoint: 'http://api.yoio.com/'
           }
         }
       }
@@ -111,7 +111,7 @@ module.exports = function (grunt) {
       },
       dist: {
         options: {
-          base: 'www'
+          base: ['www']
         }
       },
       coverage: {
@@ -330,16 +330,15 @@ module.exports = function (grunt) {
       },
       dev: {
         background: true,
-        browsers: ['PhantomJS'],
-        coverageReporter: {
-          reporters: [
-            { type: 'text-summary' }
-          ]
-        }
+        browsers: ['PhantomJS']
       },
       singleRun: {
         singleRun: true,
         browsers: ['PhantomJS'],
+        reporters: ['dots', 'coverage'],
+        preprocessors: {
+          'app/scripts/**/!(controllers|route).js': ['coverage']
+        },
         coverageReporter: {
           reporters: [
             { type: 'html', dir: 'coverage' },

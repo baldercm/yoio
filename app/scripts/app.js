@@ -4,5 +4,6 @@ angular.module('yoioApp', [
   'ionic',
   'yoioConfig',
   'yoioGrade',
-  'yoioStudent'
+  'yoioStudent',
+  'yoioRestApi'
 ]);

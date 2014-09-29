@@ -1,6 +1,3 @@
-// Karma configuration
-// http://karma-runner.github.io/0.12/config/configuration-file.html
-
 module.exports = function(config) {
   'use strict';
 
@@ -13,6 +10,9 @@ module.exports = function(config) {
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
+
+    // reporters to use (dots, coverage)
+    reporters: ['dots'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -27,6 +27,7 @@ module.exports = function(config) {
       'app/bower_components/ionic/release/js/ionic-angular.js',
       'app/scripts/**/*.js',
       // 'test/mock/**/*.js',
+      'test/jasmine-exts.js',
       'test/unit/**/*.js'
     ],
 
@@ -55,17 +56,6 @@ module.exports = function(config) {
       '/': 'http://localhost:9000/'
     },
     // URL root prevent conflicts with the site root
-    urlRoot: '/_karma_/',
-
-    reporters: ['dots', 'coverage'],
-    preprocessors: {
-      'app/scripts/**/*.js': ['coverage']
-    },
-    coverageReporter: {
-      reporters: [
-        { type: 'html', dir: 'coverage' },
-        { type: 'text-summary' }
-      ]
-    }
+    urlRoot: '/_karma_/'
   });
 };
